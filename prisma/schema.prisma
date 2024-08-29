@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model account {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  email String
+  order order[]
+
+  @@index([id], map: "accounts_index_0")
+}
+
+model order {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  account_id Int
+  status_id  Int?
+  account    account  @relation(fields: [account_id], references: [id], onDelete: Cascade)
+  status     status?  @relation(fields: [status_id], references: [id], onDelete: Cascade)
+
+  @@index([id], map: "orders_index_0")
+}
+
+model status {
+  id     Int     @id @default(autoincrement())
+  status String
+  order  order[]
+
+  @@index([id], map: "status_index_0")
+}

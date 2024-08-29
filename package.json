@@ -1,0 +1,31 @@
+{
+	"name": "order-tracker-be",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"prisma:studio": "pnpm exec prisma studio",
+		"seed": "ts-node prisma/seed.ts",
+		"start": "NODE_ENV=prod node build/main.js",
+		"start:dev": "NODE_ENV=dev ts-node src/main.ts",
+		"local:watch": "NODE_ENV=dev nodemon src -e ts, json --exec 'npm run start:dev'"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@prisma/client": "^5.19.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"morgan": "^1.10.0"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/morgan": "^1.9.9",
+		"@types/node": "^22.5.1",
+		"nodemon": "^3.1.4",
+		"prisma": "^5.19.0"
+	}
+}
